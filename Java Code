@@ -1,0 +1,72 @@
+import java.util.Scanner;
+
+class Variables 
+{
+    String activity, gender, name;
+    Double weight;
+    Double height;
+    Double age;
+    Double cal_needy;
+    Double BMR;
+}
+
+class Calc extends Variables 
+{
+    double BMR_calc() 
+    {
+        if (gender.equals("man")) 
+        {
+            BMR = (10 * weight) + (6.25 * height) - (5 * age) + 5;
+        }
+ else if (gender.equals("woman")) 
+        {
+            BMR = (10 * weight) + (6.25 * height) - (5 * age) - 161;
+        }
+        return BMR;
+    }
+
+    double Cal_needs() 
+    {
+        if (activity.equals("sedentary"))
+            cal_needy = BMR * 1.2;
+       
+        else if (activity.equals("lightly active"))
+            cal_needy = BMR * 1.375;
+
+        else if (activity.equals("moderately active"))
+            cal_needy = BMR * 1.55;
+
+        else if (activity.equals("very active"))
+            cal_needy = BMR * 1.725;
+       
+        else if (activity.equals("extra active"))
+            cal_needy = BMR * 1.9;
+       
+          else
+            System.out.println("Please enter a valid activity");
+        
+          return cal_needy;
+    }
+}
+
+class Main 
+{
+    public static void main(String[] args) 
+    {
+        Calc c = new Calc();
+        Scanner sc = new Scanner(System.in);
+        
+c.name = sc.next();
+        c.age = sc.nextDouble();
+        c.height = sc.nextDouble();
+        c.weight = sc.nextDouble();
+        sc.nextLine();
+        c.activity = sc.nextLine();
+        c.gender = sc.next();
+
+        c.BMR_calc();
+        c.Cal_needs();
+
+        System.out.println(c.cal_needy);
+    }
+}
